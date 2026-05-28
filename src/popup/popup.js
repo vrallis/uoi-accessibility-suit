@@ -55,6 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
     render(lang);
   });
 
+  // Tooltip show/hide
+  const tooltip = document.getElementById('tooltip');
+  document.querySelectorAll('.tab-help').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      tooltip.textContent = el.getAttribute('data-tooltip');
+      tooltip.classList.add('visible');
+    });
+    el.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+    });
+  });
+
   // Language toggle
   document.getElementById('langToggle').addEventListener('click', () => {
     const current = document.documentElement.lang;

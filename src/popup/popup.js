@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.lang = chrome.i18n.getUILanguage();
+
   // Localize all text
   document.getElementById('extName').textContent =
     chrome.i18n.getMessage('extensionName');

@@ -77,16 +77,16 @@
 <body>
   <h1 id="extName"></h1>
 
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="ecourse" id="tabBtnEcourse" aria-selected="true"></button>
-    <button class="tab-btn" data-tab="modip" id="tabBtnModip" aria-selected="false"></button>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="ecourse" id="tabBtnEcourse" role="tab" aria-selected="true"></button>
+    <button class="tab-btn" data-tab="modip" id="tabBtnModip" role="tab" aria-selected="false"></button>
   </div>
 
-  <div class="tab-panel active" id="panel-ecourse" aria-labelledby="tabBtnEcourse">
+  <div class="tab-panel active" id="panel-ecourse" role="tabpanel" aria-labelledby="tabBtnEcourse">
     <button class="action" id="expandAllBtn"></button>
   </div>
 
-  <div class="tab-panel" id="panel-modip" aria-labelledby="tabBtnModip">
+  <div class="tab-panel" id="panel-modip" role="tabpanel" aria-labelledby="tabBtnModip">
     <label><input type="checkbox" id="layoutFix"> <span id="layoutFixLabel"></span></label>
     <label><input type="checkbox" id="a11yFix"> <span id="a11yFixLabel"></span></label>
   </div>

@@ -43,13 +43,16 @@ function handleFolderExpansion(folder) {
           linkElement.setAttribute('href', fileLinkElement.getAttribute('href'));
 
           const iconImg = fileLinkElement.querySelector('img.icon');
-          if (iconImg && iconImg.src) {
-            const img = document.createElement('img');
-            img.src = iconImg.src;
-            img.alt = '';
-            img.width = 24;
-            img.height = 24;
-            linkElement.appendChild(img);
+          if (iconImg) {
+            const rawSrc = iconImg.getAttribute('src');
+            if (rawSrc) {
+              const img = document.createElement('img');
+              img.src = new URL(rawSrc, folderUrl).href;
+              img.alt = '';
+              img.width = 24;
+              img.height = 24;
+              linkElement.appendChild(img);
+            }
           }
 
           const nameSpan = document.createElement('span');

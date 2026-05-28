@@ -78,15 +78,15 @@
   <h1 id="extName"></h1>
 
   <div class="tabs">
-    <button class="tab-btn active" data-tab="ecourse" id="tabBtnEcourse"></button>
-    <button class="tab-btn" data-tab="modip" id="tabBtnModip"></button>
+    <button class="tab-btn active" data-tab="ecourse" id="tabBtnEcourse" aria-selected="true"></button>
+    <button class="tab-btn" data-tab="modip" id="tabBtnModip" aria-selected="false"></button>
   </div>
 
-  <div class="tab-panel active" id="panel-ecourse">
+  <div class="tab-panel active" id="panel-ecourse" aria-labelledby="tabBtnEcourse">
     <button class="action" id="expandAllBtn"></button>
   </div>
 
-  <div class="tab-panel" id="panel-modip">
+  <div class="tab-panel" id="panel-modip" aria-labelledby="tabBtnModip">
     <label><input type="checkbox" id="layoutFix"> <span id="layoutFixLabel"></span></label>
     <label><input type="checkbox" id="a11yFix"> <span id="a11yFixLabel"></span></label>
   </div>
@@ -95,6 +95,7 @@
     <span>&#9829; vrallis</span>
     <a href="https://github.com/vrallis/uoi-accessibility-suit"
        target="_blank"
+       rel="noopener noreferrer"
        class="github-link"
        title="Source Code">
       <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true">

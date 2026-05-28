@@ -31,7 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('expandAllBtn').addEventListener('click', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
-        chrome.tabs.sendMessage(tabs[0].id, { action: 'expandAll' });
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'expandAll' }, () => {
+          if (chrome.runtime.lastError) {
+            console.warn('expandAll message failed:', chrome.runtime.lastError.message);
+          }
+        });
       }
     });
   });

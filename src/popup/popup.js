@@ -1,19 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
-  document.documentElement.lang = chrome.i18n.getUILanguage();
+const STRINGS = {
+  el: {
+    extensionName: 'Σουίτα Προσβασιμότητας ΠΙ',
+    tabEcourse: 'eCourse',
+    tabModip: 'MODIP',
+    expandAllLabel: 'Επέκταση Όλων των Φακέλων',
+    settingsLayoutFix: 'Διορθώσεις Εμφάνισης',
+    settingsA11yFix: 'Μεγάλο Κείμενο & Αριθμοί',
+    tooltipEcourse: 'Επεκτείνει τα περιεχόμενα φακέλων στη σελίδα eCourse χωρίς άνοιγμα νέας καρτέλας.',
+    tooltipModip: 'Διορθώνει εμφάνιση και προσβασιμότητα στα ερωτηματολόγια MODIP.',
+    helpChar: '?',
+  },
+  en: {
+    extensionName: 'UoI Accessibility Suite',
+    tabEcourse: 'eCourse',
+    tabModip: 'MODIP',
+    expandAllLabel: 'Expand All Folders',
+    settingsLayoutFix: 'Layout Fixes',
+    settingsA11yFix: 'Large Text & Numbers',
+    tooltipEcourse: 'Expands folder contents inline on the eCourse page without opening a new tab.',
+    tooltipModip: 'Fixes layout and accessibility issues in MODIP questionnaires.',
+    helpChar: '?',
+  },
+};
 
-  // Localize all text
-  document.getElementById('extName').textContent =
-    chrome.i18n.getMessage('extensionName');
-  document.getElementById('tabBtnEcourse').textContent =
-    chrome.i18n.getMessage('tabEcourse');
-  document.getElementById('tabBtnModip').textContent =
-    chrome.i18n.getMessage('tabModip');
-  document.getElementById('expandAllBtn').textContent =
-    chrome.i18n.getMessage('expandAllLabel');
-  document.getElementById('layoutFixLabel').textContent =
-    chrome.i18n.getMessage('settingsLayoutFix');
-  document.getElementById('a11yFixLabel').textContent =
-    chrome.i18n.getMessage('settingsA11yFix');
+function render(lang) {
+  const t = STRINGS[lang] || STRINGS.el;
+  document.documentElement.lang = lang;
+
+  document.getElementById('extName').textContent = t.extensionName;
+  document.getElementById('tabLabelEcourse').textContent = t.tabEcourse;
+  document.getElementById('tabLabelModip').textContent = t.tabModip;
+  document.getElementById('expandAllBtn').textContent = t.expandAllLabel;
+  document.getElementById('layoutFixLabel').textContent = t.settingsLayoutFix;
+  document.getElementById('a11yFixLabel').textContent = t.settingsA11yFix;
+
+  const helpEcourse = document.getElementById('helpEcourse');
+  helpEcourse.textContent = t.helpChar;
+  helpEcourse.setAttribute('data-tooltip', t.tooltipEcourse);
+
+  const helpModip = document.getElementById('helpModip');
+  helpModip.textContent = t.helpChar;
+  helpModip.setAttribute('data-tooltip', t.tooltipModip);
+
+  // Toggle button shows the OTHER language (clicking it switches to that language)
+  document.getElementById('langToggle').textContent = lang === 'el' ? 'EN' : 'EL';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const browserLang = chrome.i18n.getUILanguage().startsWith('el') ? 'el' : 'en';
+
+  // Load saved language preference, fall back to browser language
+  chrome.storage.local.get(['lang'], (result) => {
+    const lang = result.lang || browserLang;
+    render(lang);
+  });
+
+  // Language toggle
+  document.getElementById('langToggle').addEventListener('click', () => {
+    const current = document.documentElement.lang;
+    const next = current === 'el' ? 'en' : 'el';
+    chrome.storage.local.set({ lang: next });
+    render(next);
+  });
 
   // Tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {

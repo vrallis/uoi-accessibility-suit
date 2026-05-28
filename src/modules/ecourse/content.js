@@ -37,9 +37,25 @@ function handleFolderExpansion(folder) {
       } else {
         fileLinks.forEach(fileLinkElement => {
           const fileEntry = document.createElement('div');
+          fileEntry.className = 'uoi-file-entry';
+
           const linkElement = document.createElement('a');
           linkElement.setAttribute('href', fileLinkElement.getAttribute('href'));
-          linkElement.textContent = fileLinkElement.textContent.trim();
+
+          const iconImg = fileLinkElement.querySelector('img.icon');
+          if (iconImg && iconImg.src) {
+            const img = document.createElement('img');
+            img.src = iconImg.src;
+            img.alt = '';
+            img.width = 24;
+            img.height = 24;
+            linkElement.appendChild(img);
+          }
+
+          const nameSpan = document.createElement('span');
+          nameSpan.textContent = fileLinkElement.textContent.trim();
+          linkElement.appendChild(nameSpan);
+
           fileEntry.appendChild(linkElement);
           newFolderContainer.appendChild(fileEntry);
         });

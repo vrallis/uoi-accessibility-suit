@@ -25,6 +25,7 @@
   "content_scripts": [
     {
       "matches": ["https://ecourse.uoi.gr/*"],
+      "css": ["modules/ecourse/content.css"],
       "js": ["modules/ecourse/content.js"]
     },
     {

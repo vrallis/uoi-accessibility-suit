@@ -1,0 +1,25 @@
+.folder-container {
+  margin: 4px 0 8px 16px;
+  padding: 4px 8px;
+  border-left: 2px solid #ccc;
+}
+
+.uoi-file-entry {
+  padding: 4px 0;
+}
+
+.uoi-file-entry a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.uoi-file-entry a:hover {
+  text-decoration: underline;
+}
+
+.uoi-file-entry img {
+  flex-shrink: 0;
+}

@@ -1,0 +1,35 @@
+{
+  "extensionName": {
+    "message": "UoI Accessibility Suite"
+  },
+  "extensionDescription": {
+    "message": "Accessibility tools for University of Ioannina platforms."
+  },
+  "tabEcourse": {
+    "message": "eCourse"
+  },
+  "tabModip": {
+    "message": "MODIP"
+  },
+  "expandAllLabel": {
+    "message": "Expand All Folders"
+  },
+  "expandButtonLabel": {
+    "message": "Expand folder"
+  },
+  "loadingText": {
+    "message": "Loading..."
+  },
+  "noFilesMessage": {
+    "message": "No file entries found for this folder."
+  },
+  "errorMessage": {
+    "message": "Error loading folder contents."
+  },
+  "settingsLayoutFix": {
+    "message": "Layout Fixes"
+  },
+  "settingsA11yFix": {
+    "message": "Large Text & Numbers"
+  }
+}

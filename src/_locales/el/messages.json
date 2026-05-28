@@ -1,0 +1,35 @@
+{
+  "extensionName": {
+    "message": "Σουίτα Προσβασιμότητας ΠΙ"
+  },
+  "extensionDescription": {
+    "message": "Εργαλεία προσβασιμότητας για τις πλατφόρμες του Πανεπιστημίου Ιωαννίνων."
+  },
+  "tabEcourse": {
+    "message": "eCourse"
+  },
+  "tabModip": {
+    "message": "MODIP"
+  },
+  "expandAllLabel": {
+    "message": "Επέκταση Όλων των Φακέλων"
+  },
+  "expandButtonLabel": {
+    "message": "Άνοιγμα φακέλου"
+  },
+  "loadingText": {
+    "message": "Φόρτωση..."
+  },
+  "noFilesMessage": {
+    "message": "Δεν βρέθηκαν αρχεία σε αυτόν τον φάκελο."
+  },
+  "errorMessage": {
+    "message": "Σφάλμα κατά τη φόρτωση του φακέλου."
+  },
+  "settingsLayoutFix": {
+    "message": "Διορθώσεις Εμφάνισης"
+  },
+  "settingsA11yFix": {
+    "message": "Μεγάλο Κείμενο & Αριθμοί"
+  }
+}

@@ -76,6 +76,32 @@ body.modip-fix-enabled .table.borderless>tfoot>tr>td {
     border: none !important;
 }
 
+body.modip-fix-enabled #initSubmitButton {
+    background-color: #2e7d32 !important;
+    color: #fff !important;
+    border-color: #1b5e20 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 12px 24px !important;
+    border-radius: 6px !important;
+    letter-spacing: 0.3px !important;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+body.modip-fix-enabled #initSubmitButton:hover {
+    background-color: #1b5e20 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.modip-fix-enabled #initSubmitButton:active {
+    background-color: #145214 !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.modip-fix-enabled #initSubmitButton .glyphicon-plus {
+    display: none !important;
+}
+
 body.modip-a11y-enabled .modip-q-num {
     font-size: 1.5em !important;
     font-weight: 900 !important;

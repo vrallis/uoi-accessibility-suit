@@ -4,6 +4,7 @@ const STRINGS = {
     tabEcourse: 'eCourse',
     tabModip: 'MODIP',
     expandAllLabel: 'Επέκταση Όλων των Φακέλων',
+    collapseAllLabel: 'Σύμπτυξη Όλων των Φακέλων',
     settingsLayoutFix: 'Διορθώσεις Εμφάνισης',
     settingsA11yFix: 'Μεγάλο Κείμενο & Αριθμοί',
     tooltipEcourse: 'Επεκτείνει τα περιεχόμενα φακέλων στη σελίδα eCourse χωρίς άνοιγμα νέας καρτέλας.',
@@ -15,6 +16,7 @@ const STRINGS = {
     tabEcourse: 'eCourse',
     tabModip: 'MODIP',
     expandAllLabel: 'Expand All Folders',
+    collapseAllLabel: 'Collapse All Folders',
     settingsLayoutFix: 'Layout Fixes',
     settingsA11yFix: 'Large Text & Numbers',
     tooltipEcourse: 'Expands folder contents inline on the eCourse page without opening a new tab.',
@@ -23,6 +25,14 @@ const STRINGS = {
   },
 };
 
+let expandMode = true;
+
+function setExpandMode(allExpanded) {
+  expandMode = !allExpanded;
+  const t = STRINGS[document.documentElement.lang] || STRINGS.el;
+  document.getElementById('expandAllBtn').textContent = allExpanded ? t.collapseAllLabel : t.expandAllLabel;
+}
+
 function render(lang) {
   const t = STRINGS[lang] || STRINGS.el;
   document.documentElement.lang = lang;
@@ -30,7 +40,7 @@ function render(lang) {
   document.getElementById('extName').textContent = t.extensionName;
   document.getElementById('tabLabelEcourse').textContent = t.tabEcourse;
   document.getElementById('tabLabelModip').textContent = t.tabModip;
-  document.getElementById('expandAllBtn').textContent = t.expandAllLabel;
+  document.getElementById('expandAllBtn').textContent = expandMode ? t.expandAllLabel : t.collapseAllLabel;
   document.getElementById('layoutFixLabel').textContent = t.settingsLayoutFix;
   document.getElementById('a11yFixLabel').textContent = t.settingsA11yFix;
 
@@ -91,14 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // eCourse: Expand All
+  // eCourse: query initial state
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0]) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'getState' }, (response) => {
+        if (chrome.runtime.lastError) return;
+        if (response) setExpandMode(response.allExpanded);
+      });
+    }
+  });
+
+  // eCourse: Expand / Collapse All
   document.getElementById('expandAllBtn').addEventListener('click', () => {
+    const action = expandMode ? 'expandAll' : 'collapseAll';
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
-        chrome.tabs.sendMessage(tabs[0].id, { action: 'expandAll' }, () => {
+        chrome.tabs.sendMessage(tabs[0].id, { action }, (response) => {
           if (chrome.runtime.lastError) {
-            console.warn('expandAll message failed:', chrome.runtime.lastError.message);
+            console.warn(action + ' message failed:', chrome.runtime.lastError.message);
+            return;
           }
+          if (response) setExpandMode(response.allExpanded);
         });
       }
     });

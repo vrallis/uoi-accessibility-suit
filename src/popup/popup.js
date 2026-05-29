@@ -47,6 +47,8 @@ function render(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('extVersion').textContent = 'v' + chrome.runtime.getManifest().version;
+
   const browserLang = chrome.i18n.getUILanguage().startsWith('el') ? 'el' : 'en';
 
   // Load saved language preference, fall back to browser language
